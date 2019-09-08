@@ -1,0 +1,31 @@
+{
+    "name": "smartfridgenode",
+    "version": "1.0.0",
+    "description": "Smart Fridge thesis node.js project library",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "nodemon app.js",
+        "start-server": "nodemon app.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Csabee005/smartfridgenode.git"
+    },
+    "author": "Csaba Magyar",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Csabee005/smartfridgenode/issues"
+    },
+    "homepage": "https://github.com/Csabee005/smartfridgenode#readme",
+    "dependencies": {
+        "body-parser": "^1.19.0",
+        "ejs": "^2.7.1",
+        "express": "^4.17.1",
+        "mysql2": "^1.7.0",
+        "sequelize": "^5.18.2"
+    },
+    "devDependencies": {
+        "nodemon": "^1.19.2"
+    }
+}
