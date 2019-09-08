@@ -19,6 +19,10 @@ const ProcessLog = sequelize.define('processlog', {
     responseCode: {
         type: Sequelize.INTEGER,
         allowNull: true
+    },
+    body: {
+        type: Sequelize.JSON,
+        allowNull: true
     }
 });
 
