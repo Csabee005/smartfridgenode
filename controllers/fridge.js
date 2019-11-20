@@ -437,9 +437,13 @@ module.exports.getContentPreference = (req, res, next) => {
 // Create content preference for fridge
 module.exports.createContentPreference = (req, res, next) => {
     const contentPreference = req.body;
-    ContentPreference.create({ operator: contentPreference.operator, quantity: contentPreference.quantity,
-    fridgeId: contentPreference.fridgeId, productId: contentPreference.productId })
-        .then(result =>{
+    ContentPreference.create({
+            operator: contentPreference.operator,
+            quantity: contentPreference.quantity,
+            fridgeId: contentPreference.fridgeId,
+            productId: contentPreference.productId
+        })
+        .then(result => {
             const msg = 'Successfully created content preference!';
             res.status(200).send(result);
             ProcessLog.create({ message: msg, statusCode: 200, body: req.body, error: false });
@@ -470,18 +474,18 @@ module.exports.editContentPreference = (req, res, next) => {
                 contentPreference.productId = preference.productId;
             }
             contentPreference.save()
-                .then(result =>{
+                .then(result => {
                     const msg = 'Successfully edited content preference!';
                     res.status(200).send(result);
                     ProcessLog.create({ message: msg, statusCode: 200, body: req.query, error: false });
                 })
-                .catch(error =>{
+                .catch(error => {
                     const msg = 'Error while editing content preference!';
                     console.log(error);
                     res.status(500).send(msg);
                     ProcessLog.create({ message: msg, statusCode: 500, body: req.query, error: true });
                 })
-            
+
         })
         .catch(error => {
             const msg = 'Error when retrieving content preference!';
