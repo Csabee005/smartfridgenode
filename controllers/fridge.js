@@ -393,27 +393,125 @@ module.exports.deleteCartItem = (req, res, next) => {
         });
 };
 
-// List content preferences
-module.exports.getContentPreferences = (req, res, next) => {
-
-};
 // List content preference for a single fridge
 module.exports.getFridgeContentPreferences = (req, res, next) => {
-
+    const fridgeId = req.params.id;
+    Fridge.findByPk(fridgeId)
+        .then(fridge => {
+            fridge.getContentpreferences()
+                .then(contentPreferences => {
+                    const msg = 'Successfully retrieved content preferences!';
+                    res.status(200).send(contentPreferences);
+                    ProcessLog.create({ message: msg, statusCode: 200, body: req.params, error: false });
+                })
+                .catch(error => {
+                    const msg = 'Error while retrieving content preferences!';
+                    console.log(error);
+                    res.status(500).send(msg);
+                    ProcessLog.create({ message: msg, statusCode: 500, body: req.params, error: true });
+                });
+        })
+        .catch(error => {
+            const msg = 'Error while retrieving fridge!';
+            console.log(error);
+            res.status(500).send(msg);
+            ProcessLog.create({ message: msg, statusCode: 500, body: req.params, error: true });
+        });
 };
 // Get single content preference
 module.exports.getContentPreference = (req, res, next) => {
-
+    const preferenceId = req.params.id;
+    ContentPreference.findByPk(preferenceId)
+        .then(contentPreference => {
+            const msg = 'Successfully retrieved content preference!';
+            res.status(200).send(contentPreference);
+            ProcessLog.create({ message: msg, statusCode: 200, body: req.params, error: false });
+        })
+        .catch(error => {
+            const msg = 'Error while retrieving content preference!';
+            console.log(error);
+            res.status(500).send(msg);
+            ProcessLog.create({ message: msg, statusCode: 500, body: req.params, error: true });
+        })
 };
 // Create content preference for fridge
 module.exports.createContentPreference = (req, res, next) => {
-
+    const contentPreference = req.body;
+    ContentPreference.create({ operator: contentPreference.operator, quantity: contentPreference.quantity,
+    fridgeId: contentPreference.fridgeId, productId: contentPreference.productId })
+        .then(result =>{
+            const msg = 'Successfully created content preference!';
+            res.status(200).send(result);
+            ProcessLog.create({ message: msg, statusCode: 200, body: req.body, error: false });
+        })
+        .catch(error => {
+            const msg = 'Error when creating content preference!';
+            console.log(error);
+            res.status(500).send(msg);
+            ProcessLog.create({ message: msg, statusCode: 500, body: req.body, error: true });
+        })
 };
 // Edit content preference for fridge
 module.exports.editContentPreference = (req, res, next) => {
-
+    const contentPrefererenceId = req.params.id;
+    const preference = req.query;
+    ContentPreference.findByPk(contentPrefererenceId)
+        .then(contentPreference => {
+            if (preference.operator) {
+                contentPreference.operator = preference.operator;
+            }
+            if (preference.quantity) {
+                contentPreference.quantity = preference.quantity;
+            }
+            if (preference.fridgeId) {
+                contentPreference.fridgeId = preference.fridgeId;
+            }
+            if (preference.productId) {
+                contentPreference.productId = preference.productId;
+            }
+            contentPreference.save()
+                .then(result =>{
+                    const msg = 'Successfully edited content preference!';
+                    res.status(200).send(result);
+                    ProcessLog.create({ message: msg, statusCode: 200, body: req.query, error: false });
+                })
+                .catch(error =>{
+                    const msg = 'Error while editing content preference!';
+                    console.log(error);
+                    res.status(500).send(msg);
+                    ProcessLog.create({ message: msg, statusCode: 500, body: req.query, error: true });
+                })
+            
+        })
+        .catch(error => {
+            const msg = 'Error when retrieving content preference!';
+            console.log(error);
+            res.status(500).send(msg);
+            ProcessLog.create({ message: msg, statusCode: 500, body: req.params, error: true });
+        });
 };
 // Remove content preference for fridge
 module.exports.deleteContentPreference = (req, res, next) => {
-
+    const contentPreferenceId = req.params.id;
+    ContentPreference.findByPk(contentPreferenceId)
+        .then(contentPreference => {
+            contentPreference.destroy()
+                .then(result => {
+                    const msg = 'Successfully deleted content preference!';
+                    res.status(200).send(result);
+                    ProcessLog.create({ message: msg, statusCode: 200, body: req.params, error: false });
+                })
+                .catch(error => {
+                    const msg = 'Error when creating content preference!';
+                    console.log(error);
+                    res.status(500).send(msg);
+                    ProcessLog.create({ message: msg, statusCode: 500, body: req.params, error: true });
+                })
+        })
+        .catch(error => {
+            const msg = 'Error when retrieving content preference!';
+            console.log(error);
+            res.status(500).send(msg);
+            ProcessLog.create({ message: msg, statusCode: 500, body: req.params, error: true });
+        });
 };

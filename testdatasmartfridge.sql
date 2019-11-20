@@ -23,7 +23,7 @@ WHERE u.id = 1 AND fr.userId = u.id AND fi.fridgeId = fr.userId AND fi.fridgeId 
 -- Create Fanni's fridge
 INSERT INTO `smart_fridge`.`fridges` (`name`, `location`, `createdAt`, `updatedAt`, `userId`) VALUES ('Manónál', 'Konyha', '2019-09-07 00:00:00', '2019-09-07 00:00:00', '2');
 
--- Fill her up ;)
+-- Fill her up
 INSERT INTO `smart_fridge`.`fridgeitems` (`quantity`, `createdAt`, `updatedAt`, `fridgeId`, `productId`) VALUES ('1', '2019-09-07', '2019-09-07', '3', '1');
 INSERT INTO `smart_fridge`.`fridgeitems` (`quantity`, `createdAt`, `updatedAt`, `fridgeId`, `productId`) VALUES ('3', '2019-09-07', '2019-09-07', '3', '2');
 INSERT INTO `smart_fridge`.`fridgeitems` (`quantity`, `createdAt`, `updatedAt`, `fridgeId`, `productId`) VALUES ('540', '2019-09-07', '2019-09-07', '3', '3');
@@ -55,7 +55,3 @@ INSERT INTO `smart_fridge`.`apppreferences` (`name`, `value`, `createdAt`, `upda
 INSERT INTO `smart_fridge`.`apppreferences` (`name`, `value`, `createdAt`, `updatedAt`, `userId`) VALUES ('padding', '15', '2019-09-07', '2019-09-07', '1');
 INSERT INTO `smart_fridge`.`apppreferences` (`name`, `value`, `createdAt`, `updatedAt`, `userId`) VALUES ('marginTop', '4', '2019-09-07', '2019-09-07', '1');
 INSERT INTO `smart_fridge`.`apppreferences` (`name`, `value`, `createdAt`, `updatedAt`, `userId`) VALUES ('style', 'black', '2019-09-07', '2019-09-07', '2');
-
-CREATE DEFINER=`root`@`localhost` TRIGGER `fridges_AFTER_INSERT` AFTER INSERT ON `fridges` FOR EACH ROW BEGIN
-	INSERT INTO smart_fridge.carts (createdAt, updatedAt, fridgeId) values(NOW(), NOW(), NEW.id);
-END

@@ -44,16 +44,14 @@ router.delete('/fridge/cartItem/:id', fridgeController.deleteCartItem);
 
 // Fridge preferences
 
-router.get('/fridge/preferences', fridgeController.getContentPreferences);
-
 router.get('/fridge/preferences/:id', fridgeController.getFridgeContentPreferences);
 
 router.get('/fridge/preference/:id', fridgeController.getContentPreference);
 
 router.post('/fridge/preference', fridgeController.createContentPreference);
 
-router.put('/fridge/cart/:id', fridgeController.editContentPreference);
+router.put('/fridge/preference/:id', fridgeController.editContentPreference);
 
-router.delete('/fridge/cart/:id', fridgeController.deleteContentPreference);
+router.delete('/fridge/preference/:id', fridgeController.deleteContentPreference);
 
 module.exports = router;

@@ -12,7 +12,7 @@ const appRoutes = require('./routes/approutes');
 const arduinoRoutes = require('./routes/arduinoroutes');
 
 // Importing Sequelize classes
-const AppPreference = require('./models/appPreference');
+const AppPreference = require('./models/appPreference'); 
 const Cart = require('./models/cart');
 const CartItem = require('./models/cartItem');
 const Fridge = require('./models/fridge');
@@ -42,6 +42,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(authRoutes);
 app.use(fridgeRoutes);
 app.use(appRoutes);
+app.use(arduinoRoutes);
 //app.use(errorController.get404);
 
 User.hasOne(AppPreference);
