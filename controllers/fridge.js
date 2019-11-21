@@ -393,7 +393,38 @@ module.exports.deleteCartItem = (req, res, next) => {
         });
 };
 
-// List content preference for a single fridge
+// List content preferences for a user
+
+module.exports.getAllFridgeContentPreferences = async(req, res, next) => {
+    const userId = req.params.userId;
+    try {
+        /*prizes.map(async (prize) => {
+        const winners = await Winner.find({"id": prize._id});
+        response.push({prize, winners});
+    }))*/
+        const user = await User.findByPk(userId);
+        const fridges = await user.getFridges();
+        let contentPreferences = [];
+        let fridgePreferences = [];
+        await Promise.all(fridges.map(async(fridge) => {
+            fridgePreferences = await fridge.getContentpreferences();
+            console.log(fridgePreferences);
+        }));
+        await Promise.all(fridgePreferences.map(async(preference) => {
+            contentPreferences.push(preference);
+            console.log(preference);
+        }));
+
+        res.status(200).send(contentPreferences);
+    } catch (err) {
+        const msg = 'Error while retrieving user!';
+        console.log(err);
+        res.status(500).send(msg);
+        ProcessLog.create({ message: msg, statusCode: 500, body: req.params, error: true });
+    }
+}
+
+// List content preferences for a single fridge
 module.exports.getFridgeContentPreferences = (req, res, next) => {
     const fridgeId = req.params.id;
     Fridge.findByPk(fridgeId)

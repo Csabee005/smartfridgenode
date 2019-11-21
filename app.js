@@ -12,7 +12,7 @@ const appRoutes = require('./routes/approutes');
 const arduinoRoutes = require('./routes/arduinoroutes');
 
 // Importing Sequelize classes
-const AppPreference = require('./models/appPreference'); 
+const AppPreference = require('./models/appPreference');
 const Cart = require('./models/cart');
 const CartItem = require('./models/cartItem');
 const Fridge = require('./models/fridge');
@@ -29,7 +29,7 @@ const prediction = classificator.makePrediction().then(result => {
     })
     .catch(error => {
         console.log(error);
-    })
+    });
 
 // Misc init
 app.set('view engine', 'ejs');
