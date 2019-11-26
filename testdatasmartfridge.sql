@@ -5,6 +5,7 @@ INSERT INTO `smart_fridge`.`users` (`name`, `email`, `password`, `createdAt`, `u
 INSERT INTO `smart_fridge`.`fridges` (`name`, `location`, `createdAt`, `updatedAt`, `userId`) VALUES ('Otthoni', 'Konyha', '2019-09-07', '2019-09-07', '1');
 INSERT INTO `smart_fridge`.`users` (`name`, `email`, `password`, `createdAt`, `updatedAt`) VALUES ('Rankl Fanni', 'fyny94@gmail.com', 'valami', '2019-09-07', '2019-09-07');
 INSERT INTO `smart_fridge`.`fridges` (`name`, `location`, `createdAt`, `updatedAt`, `userId`) VALUES ('Otthoni', 'Konyha', '2019-09-07', '2019-09-07', '2');
+INSERT INTO `smart_fridge`.`users` (`id`, `name`, `email`, `password`, `createdAt`, `updatedAt`) VALUES(3, "teszt", "teszt@gmail.com", "something123", NOW(), NOW());
 
 -- Adding standalone items to the available products
 INSERT INTO `smart_fridge`.`products` (`name`, `category`, `calories`, `unit`, `description`, `createdAt`, `updatedAt`) VALUES ('Milk', 'Dairy', '260', 'l', 'Everyone\'s favourite.', '2019-09-07 00:00:00', '2019-09-07 00:00:00');
@@ -23,7 +24,7 @@ WHERE u.id = 1 AND fr.userId = u.id AND fi.fridgeId = fr.userId AND fi.fridgeId 
 -- Create Fanni's fridge
 INSERT INTO `smart_fridge`.`fridges` (`name`, `location`, `createdAt`, `updatedAt`, `userId`) VALUES ('Manónál', 'Konyha', '2019-09-07 00:00:00', '2019-09-07 00:00:00', '2');
 
--- Fill her up
+-- Fill her up ;)
 INSERT INTO `smart_fridge`.`fridgeitems` (`quantity`, `createdAt`, `updatedAt`, `fridgeId`, `productId`) VALUES ('1', '2019-09-07', '2019-09-07', '3', '1');
 INSERT INTO `smart_fridge`.`fridgeitems` (`quantity`, `createdAt`, `updatedAt`, `fridgeId`, `productId`) VALUES ('3', '2019-09-07', '2019-09-07', '3', '2');
 INSERT INTO `smart_fridge`.`fridgeitems` (`quantity`, `createdAt`, `updatedAt`, `fridgeId`, `productId`) VALUES ('540', '2019-09-07', '2019-09-07', '3', '3');

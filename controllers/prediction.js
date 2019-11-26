@@ -9,8 +9,11 @@ module.exports.createPrediction = (req, res, next) => {
     res.status(200).send("asd");
     /*console.log(req.body);
     const prediction = req.body;
-    Prediction.create( { name: prediction.name, confidence: prediction.confidence,
-    fridgeId: prediction.fridgeId } )
+    Prediction.create({
+            name: prediction.name,
+            confidence: prediction.confidence,
+            fridgeId: prediction.fridgeId
+        })
         .then(result => {
             const msg = 'Successfully created prediction data!'
             res.status(200).send(result);

@@ -54,4 +54,8 @@ router.put('/fridge/preference/:id', fridgeController.editContentPreference);
 
 router.delete('/fridge/preference/:id', fridgeController.deleteContentPreference);
 
+// Get all preferences for user
+
+router.get('/fridgepreferences/:userId', fridgeController.getAllFridgeContentPreferences);
+
 module.exports = router;

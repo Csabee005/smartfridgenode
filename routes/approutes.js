@@ -4,14 +4,14 @@ const appController = require('../controllers/preference');
 
 const router = express.Router();
 
-router.get('/preference', appController.getEveryPreference);
+router.get('/preferences', appController.getEveryPreference);
 
-router.get('/preference/:id', appController.getPreference);
+router.get('/preference/:userId', appController.getPreference);
 
 router.post('/preference', appController.createPreference);
 
-router.put('/preference/:id', appController.editPreference);
+router.put('/preference/:userId', appController.editPreference);
 
-router.delete('/preference/:id', appController.deletePreference);
+router.delete('/preference/:userId', appController.deletePreference);
 
 module.exports = router;

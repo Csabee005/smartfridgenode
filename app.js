@@ -12,7 +12,7 @@ const appRoutes = require('./routes/approutes');
 const arduinoRoutes = require('./routes/arduinoroutes');
 
 // Importing Sequelize classes
-const AppPreference = require('./models/appPreference'); 
+const AppPreference = require('./models/appPreference');
 const Cart = require('./models/cart');
 const CartItem = require('./models/cartItem');
 const Fridge = require('./models/fridge');
@@ -22,6 +22,14 @@ const Prediction = require('./models/prediction');
 const ProcessLog = require('./models/processLog');
 const Product = require('./models/product');
 const User = require('./models/user');
+const classificator = require('./models/classificator');
+
+const prediction = classificator.makePrediction().then(result => {
+        console.log(result);
+    })
+    .catch(error => {
+        console.log(error);
+    });
 
 // Misc init
 app.set('view engine', 'ejs');
