@@ -5,7 +5,9 @@ const ProcessLog = require('../models/ProcessLog');
 
 // Create a new prediction
 module.exports.createPrediction = (req, res, next) => {
-    console.log(req.body);
+    console.log(req.file);
+    res.status(200).send("asd");
+    /*console.log(req.body);
     const prediction = req.body;
     Prediction.create( { name: prediction.name, confidence: prediction.confidence,
     fridgeId: prediction.fridgeId } )
@@ -19,5 +21,5 @@ module.exports.createPrediction = (req, res, next) => {
             console.log(error);
             res.status(500).send(msg);
             ProcessLog.create({ message: msg, statusCode: 500, body: req.body, error: true });
-        })
+        })*/
 };
