@@ -1,6 +1,7 @@
 const express = require('express');
 
 const fridgeController = require('../controllers/fridge');
+const productController = require('../controllers/product');
 
 const router = express.Router();
 
@@ -26,6 +27,12 @@ router.post('/fridge/item', fridgeController.postAddItemToFridge);
 router.put('/fridge/item/:id', fridgeController.editItemInFridge);
 
 router.delete('/fridge/item/:id', fridgeController.deleteItemFromFridge);
+
+// Products
+router.get('/product', productController.getEveryProduct);
+
+router.get('/product/:id', productController.getSingleProduct);
+
 
 // Carts and cart items
 router.get('/cart/:userId', fridgeController.getCarts);
